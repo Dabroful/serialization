@@ -2,9 +2,10 @@
 
 namespace serialization
 {
-
+    [Serializable]
     public class Group
     {
+        [NonSerialized]
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
         public int Number { get; set; }
         public string Name { get; set; }
