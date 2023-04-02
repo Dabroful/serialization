@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace serialization
 {
@@ -7,11 +9,7 @@ namespace serialization
     {
         public static void Main(string[] args)
         {
-            var groups = new List<Group>();
-            for (int i = 0; i < 10; i++)
-            {
-                groups.Add(new Group(i, Convert.ToInt32("Группа" + i)));
-            }
+            
         }
     }
 }
