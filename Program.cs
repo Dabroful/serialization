@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
+using System.Xml.Serialization;
 
 namespace serialization
 {
@@ -31,7 +33,28 @@ namespace serialization
             {
                 binFormatter.Serialize(file, groups);
             }
-            
+
+            IEnumerable<Group> newGroups;
+            using (var file = new FileStream("groups.txt", FileMode.OpenOrCreate))
+            {
+                newGroups = binFormatter.Deserialize(file) as List<Group>;
+                if (newGroups != null)
+                {
+                    foreach (var group in newGroups)
+                    {
+                        Console.WriteLine(group);
+                    }
+                }
+            }
+
+            Console.ReadLine();
+
+            var soap = new SoapFormatter();
+            using (var file = new FileStream("groups.soap", FileMode.OpenOrCreate))
+            {
+                binFormatter.Serialize(file, groups);
+            }
+            Console.ReadLine();
         }
     }
 }
